@@ -1,0 +1,53 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/me/me",
+        "pages/project/project",
+        "pages/login/login",
+        "pages/projects/projects",
+        "pages/story/story",
+        "pages/notify/notify",
+        "pages/work/work"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Taiga",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "images/index.png",
+                "selectedIconPath": "images/index_focus.png"
+            },
+            {
+                "pagePath": "pages/work/work",
+                "text": "进行中",
+                "iconPath": "images/chat.png",
+                "selectedIconPath": "images/chat_focus.png"
+            },
+            {
+                "pagePath": "pages/notify/notify",
+                "text": "通知",
+                "iconPath": "images/ring.png",
+                "selectedIconPath": "images/ring_focus.png"
+            },
+            {
+                "pagePath": "pages/logs/logs",
+                "text": "日志",
+                "iconPath": "images/chat.png",
+                "selectedIconPath": "images/chat_focus.png"
+            },
+            {
+                "pagePath": "pages/me/me",
+                "text": "个人中心",
+                "iconPath": "images/discovery.png",
+                "selectedIconPath": "images/discovery_focus.png"
+            }
+        ]
+    }
+}

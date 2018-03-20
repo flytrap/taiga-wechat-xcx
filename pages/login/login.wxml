@@ -1,0 +1,22 @@
+<!--pages/logoin/login.wxml-->
+<view class="container">
+    <view class="loginbox">
+        <form bindsubmit="formSubmit" bindreset="formReset">
+            <view class="section">
+                <view class="section__title">用户名</view>
+                <input name="username" placeholder="username" />
+            </view>
+            <view class="section">
+                <view class="section__title">密码</view>
+                <input name="password" placeholder="password" type="password" />
+            </view>
+            <view wx:if="{{error}}" class="section">
+                <view class="section__title">{{error}}</view>
+            </view>
+            <view class="btn-area">
+                <button formType="submit">登录</button>
+                <!-- <button formType="reset">Reset</button> -->
+            </view>
+        </form>
+    </view>
+</view>

@@ -1,0 +1,34 @@
+<!--pages/work/work.wxml-->
+<view class="top-tab flex-wrp flex-tab">
+    <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+        {{itemName}}
+    </view>
+</view>
+<scroll-view scroll-y="true" class="container withtab" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+
+    <block wx:for="{{feed}}" wx:for-index="idx" wx:key="item" data-idx="{{idx}}">
+        <view class="feed-item" id="{{item.id}} {{item.slug}}" bindtap="toProject">
+            <view class="feed-source">
+                <view class="avatar">
+                    <image src="{{item.logo_small_url}}"></image>
+                </view>
+                <text>{{item.project_extra_info.name}}</text>
+                <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+            </view>
+            <view class="feed-content">
+                <view class="description">
+                    <a class="description-link">
+                        <text>{{item.subject}}</text>
+                    </a>
+                </view>
+                <view class="descript-body">
+                    <view class="project-actions">
+                        <view>
+                            <text style='color: {{item.status_extra_info.color}}'>状态: {{item.status_extra_info.name}}</text>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</scroll-view>

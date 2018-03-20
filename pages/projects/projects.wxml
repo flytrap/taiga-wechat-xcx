@@ -1,0 +1,111 @@
+<!--pages/projects/projects.wxml-->
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <block wx:for="{{projects}}" wx:for-index="idx" wx:key="item" data-idx="{{idx}}">
+
+        <view wx:if='{{listType === "timeline"}}' class="feed-item">
+            <view class="feed-source">
+                <view class="avatar">
+                    <image src="{{item.logo_small_url}}"></image>
+                </view>
+                <text>{{item.data.user.name}} {{item.event_type}} {{item.data.project.name}}</text>
+                <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+            </view>
+            <view class="feed-content">
+                <view wx:if='{{item.data.comment !== undefine && item.data.comment.length}}' class="description">
+                    <text>{{item.data.comment}}</text>
+                </view>
+                <view wx:else class="description">
+                    <text>{{item.data.project.description}}</text>
+                </view>
+                <view class="descript-body">
+                    <view class="project-actions" bindtap="toProject">
+                        <view class="like dot">
+                            <a>发生时间: {{item.created}}</a>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view wx:elif='{{listType === "contact"}}' class="feed-item">
+            <view class="feed-source">
+                <view class="avatar">
+                    <image src="{{item.big_photo}}"></image>
+                </view>
+                <text>{{item.full_name}}</text>
+            </view>
+            <view class="feed-content">
+                <view class="description">
+                    <text>{{item.roles}}</text>
+                </view>
+                <view class="descript-body">
+                    <view class="project-actions" bindtap="toProject">
+                        <view class="like dot">
+                            <a>{{item.full_name_display}}</a>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view wx:elif="{{item.type === 'project' || item.type === undefine}}" class="feed-item" id="{{item.id}} {{item.slug}}" bindtap="toProject">
+            <view class="feed-source">
+                <view class="avatar">
+                    <image src="{{item.logo_small_url}}"></image>
+                </view>
+                <text>{{item.name}}</text>
+                <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+            </view>
+            <view class="feed-content">
+                <view class="description">
+                    <text>{{item.description}}</text>
+                </view>
+                <view class="description" wx:if='{{item.tags.length}}'>
+                    <text>标签: {{item.tags}}</text>
+                </view>
+                <view class="descript-body">
+                    <view class="project-actions" bindtap="toProject">
+                        <view class="like dot">
+                            <a>{{item.total_fans}} 粉丝 </a>
+                        </view>
+                        <view class="comments dot">
+                            <a>{{item.total_watchers}} 关注者 </a>
+                        </view>
+                        <view class="follow-it">
+                            <a>{{item.members.length}} 参与者</a>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view wx:else class="feed-item" id="{{item.id}} {{item.slug}}" bindtap="toProject">
+            <view class="feed-source">
+                <view class="avatar">
+                    <image src="{{item.logo_small_url}}"></image>
+                </view>
+                <text>{{item.project_name}} {{item.type}}</text>
+                <text style='color: {{item.status_color}}'>{{item.status}}</text>
+                <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+            </view>
+            <view class="feed-content">
+                <view class="description">
+                    <text>#{{item.ref}} {{item.subject}}</text>
+                </view>
+                <view class="description" wx:if='{{item.tags.length}}'>
+                    <text>标签: {{item.tags}}</text>
+                </view>
+                <view class="descript-body">
+                    <view class="project-actions" bindtap="toProject">
+                        <view class="like dot">
+                            <a>{{item.total_voters}} 投票 </a>
+                        </view>
+                        <view class="comments dot">
+                            <a>{{item.total_watchers}} 关注者 </a>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</scroll-view>

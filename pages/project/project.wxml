@@ -1,0 +1,108 @@
+<!--pages/project/project.wxml-->
+<view class="top-tab flex-wrp flex-tab">
+    <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+        {{itemName}}
+    </view>
+</view>
+<scroll-view scroll-y="true" class="container withtab" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view hidden="{{currentNavtab==0 ? '' : true}}" class="feed-item">
+        <view class="feed-source">
+            <a class="">
+                <text>项目名: {{project.name}}</text>
+            </a>
+        </view>
+        <view class="feed-content">
+            <view class="description" id="{{item.id}}" bindtap="">
+                <text>描述: {{project.description}}</text>
+            </view>
+            <view class="description" id="{{item.id}}" bindtap="">
+                <a class="description-link">
+                    <text>项目所有者: </text>
+                    <text>{{project.owner.full_name_display}}</text>
+                </a>
+            </view>
+            <view class="descript-body">
+                <view class="project-actions" bindtap="">
+                    <view class="like dot">
+                        <a>{{project.total_fans}} 粉丝 </a>
+                    </view>
+                    <view class="comments dot">
+                        <a>{{project.total_watchers}} 关注者 </a>
+                    </view>
+                    <view class="follow-it">
+                        <a>{{project.members.length}} 参与者</a>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="container">
+            <text>项目成员信息: </text>
+        </view>
+        <block wx:for="{{project.members}}" wx:for-index="idx" wx:for-item="member" data-idx="{{idx}}">
+            <view class="feed-item">
+                <view class="feed-source">
+                    <text>用户id: </text>
+                    <text>{{member.id}}</text>
+                </view>
+                <view class="feed-source">
+                    <text>用户全名: </text>
+                    <text>{{member.full_name}}</text>
+                </view>
+                <view class="feed-source">
+                    <text>用户所属组: </text>
+                    <text>{{member.role_name}}</text>
+                </view>
+            </view>
+        </block>
+    </view>
+
+
+    <view hidden="{{currentNavtab==1 ? '' : true}}">
+        <block wx:for="{{timelines}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+            <view class="feed-item">
+                <view class="feed-source">
+                    <a class="">
+                        <text>{{item.data.user.name}}</text>
+                        <text>has commented in the epic</text>
+                        <text>#{{item.data.epic.ref}} {{item.data.epic.subject}}</text>
+                    </a>
+                </view>
+
+                <view class="feed-content">
+                    <view class="description" id="{{item.id}}" bindtap="toProject">
+                        <a class="description-link">
+                            <text>{{item.data.comment}}</text>
+                        </a>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+
+
+    <view hidden="{{currentNavtab==2 ? '' : true}}" class="feed-item">
+        <block wx:for="{{storyData}}" wx:for-index="idx" wx:for-item="item" data-idx="{{idx}}">
+            <view class="feed-item" id='{{item.ref}}' bindtap='gotoStory'>
+                <view class="feed-source">
+                    <text>票数: </text>
+                    <text>{{item.total_voters}}</text>
+                </view>
+                <view class="feed-source">
+                    <text>状态: </text>
+                    <text>{{item.status_extra_info.name}}</text>
+                </view>
+                <view class="feed-source">
+                    <text>点数: </text>
+                    <text>{{item.total_points}}</text>
+                </view>
+
+                <view class="feed-content">
+                    <view class="description">
+                        <text>主题: </text>
+                        <text>{{item.subject}}</text>
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</scroll-view>

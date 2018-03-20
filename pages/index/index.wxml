@@ -1,0 +1,52 @@
+<!--index.wxml-->
+<view class="top-tab flex-wrp flex-tab">
+    <view class="toptab flex-item {{currentNavtab==idx ? 'active' : ''}}" wx:for="{{navTab}}" wx:for-index="idx" wx:for-item="itemName" data-idx="{{idx}}" bindtap="switchTab">
+        {{itemName}}
+    </view>
+</view>
+<scroll-view scroll-y="true" class="container withtab" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view class="search flex-wrp">
+        <view class="search-left flex-item">
+            <image src="../../images/search.png"></image>
+            <input placeholder="搜索项目" placeholder-class="search-placeholder" bindconfirm='searchProject' />
+        </view>
+        <view class="search-right flex-item" bindtap='upper'>
+            <image src="../../images/lighting.png"></image>
+        </view>
+    </view>
+
+    <block wx:for="{{feed}}" wx:for-index="idx" wx:key="item" data-idx="{{idx}}">
+        <view class="feed-item" id="{{item.id}} {{item.slug}}" bindtap="toProject">
+            <view class="feed-source">
+                <view class="avatar">
+                    <image src="{{item.logo_small_url}}"></image>
+                </view>
+                <text>{{item.name}}</text>
+                <image class="item-more" mode="aspectFit" src="../../images/more.png"></image>
+            </view>
+            <view class="feed-content">
+                <view class="description">
+                    <a class="description-link">
+                        <text>{{item.description}}</text>
+                    </a>
+                </view>
+                <view class="descript-body">
+                    <!-- <view bindtap="bindItemTap">
+                        <text class="answer-txt" aid="{{id}}">{{item.answer_ctnt}}</text>
+                    </view> -->
+                    <view class="project-actions" bindtap="toProject">
+                        <view class="like dot">
+                            <a>{{item.total_fans}} 粉丝 </a>
+                        </view>
+                        <view class="comments dot">
+                            <a>{{item.total_watchers}} 关注者 </a>
+                        </view>
+                        <view class="follow-it">
+                            <a>{{item.members.length}} 参与者</a>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+</scroll-view>

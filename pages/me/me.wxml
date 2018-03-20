@@ -1,0 +1,81 @@
+<!--pages/me/me.wxml-->
+<view class="container more">
+    <view class="user flex-wrp">
+        <view class="avatar flex-item">
+            <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        </view>
+        <view class="user-info flex-item">
+            <text class="userinfo-nickname">{{userInfo.nickName}}({{statData.roles}})</text>
+            <text class="edit">{{username}}</text>
+        </view>
+    </view>
+
+    <view class="my">
+        <view class="my-item flex-wrp" id='timeline' bindtap='gotoProjects'>
+            <view class="myitem-icon flex-item">
+                <image src="../../images/draft.png"></image>
+            </view>
+            <view class="myitem-name flex-item">
+                <text>我的时间线</text>
+            </view>
+        </view>
+        <view class="my-item flex-wrp" id='like' bindtap='gotoProjects'>
+            <view class="myitem-icon flex-item">
+                <image src="../../images/star.png"></image>
+            </view>
+            <view class="myitem-name flex-item">
+                <text>我的收藏</text>
+            </view>
+        </view>
+        <view class="my-item flex-wrp" id='vote' bindtap='gotoProjects'>
+            <view class="myitem-icon flex-item">
+                <image src="../../images/recent.png"></image>
+            </view>
+            <view class="myitem-name flex-item">
+                <text>我的投过的票</text>
+            </view>
+        </view>
+        <view class="my-item flex-wrp" id='watched' bindtap='gotoProjects'>
+            <view class="myitem-icon flex-item">
+                <image src="../../images/eye.png"></image>
+            </view>
+            <view class="myitem-name flex-item">
+                <text>我的关注</text>
+            </view>
+        </view>
+        <view class="my-item flex-wrp" id='contact' bindtap='gotoProjects'>
+            <view class="myitem-icon flex-item">
+                <image src="../../images/book.png"></image>
+            </view>
+            <view class="myitem-name flex-item">
+                <text>我的联系人({{statData.total_num_contacts}})</text>
+            </view>
+        </view>
+
+        <view class="my-item flex-wrp" id='default' bindtap='gotoProjects'>
+            <view class="myitem-icon flex-item">
+                <image src="../../images/live.png"></image>
+            </view>
+            <view class="myitem-name flex-item">
+                <text>我的项目({{statData.total_num_projects}})</text>
+            </view>
+        </view>
+
+        <view class="my-item flex-wrp" id='default'>
+            <view class="myitem-icon flex-item">
+                <image src=""></image>
+            </view>
+            <view class="myitem-name flex-item">
+                <text>关闭用户story({{statData.total_num_closed_userstories}})</text>
+            </view>
+        </view>
+        <view class="my-item flex-wrp" id='default' bindtap='logout'>
+            <view class="myitem-icon flex-item">
+                <image src=""></image>
+            </view>
+            <view class="myitem-name flex-item">
+                <text>退出登录</text>
+            </view>
+        </view>
+    </view>
+</view>

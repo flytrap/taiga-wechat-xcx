@@ -1,0 +1,40 @@
+<!--pages/story/story.wxml-->
+<scroll-view scroll-y="true" class="container" bindscrolltoupper="upper" upper-threshold="10" lower-threshold="5" bindscrolltolower="lower" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <view class="feed-item">
+        <view class="feed-source">
+            <text>票数: {{story.total_voters}}</text>
+            <text>主题: {{story.subject}}</text>
+        </view>
+        <view class="feed-source">
+            <text>epic: </text>
+            <text>{{story.epics[0].subject}}</text>
+        </view>
+        <view class="feed-source">
+            <text></text>
+            <text>标签: {{tag}}</text>
+            <block wx:for="{{story.tags}}" wx:for-index="idx" wx:for-item="tag" data-idx="{{idx}}">
+                <text style='color: {{tag[1]}}'>{{tag[0]}}</text>
+            </block>
+        </view>
+
+        <view class="feed-content">
+            <view class="description">
+                <text>描述: </text>
+                <text>{{story.description}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="feed-item">
+        <block wx:for="{{comments}}" wx:for-index="idx" wx:for-item="comment" data-idx="{{idx}}">
+            <view class="feed-source">
+                <text>发言人: {{comment.user.name}}</text>
+                <text>  {{comment.created_at}}</text>
+            </view>
+            <view class="feed-content">
+                <view class="description">
+                    <rich-text nodes="{{comment.comment_html}}"></rich-text>
+                </view>
+            </view>
+        </block>
+    </view>
+</scroll-view>
